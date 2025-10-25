@@ -1,3 +1,6 @@
+## 3.10.7
+- Add force load to prevent stripping
+
 ## 3.10.6
 - Fix bridge lib copy on windows (#85) Thanks to @divinebird
 

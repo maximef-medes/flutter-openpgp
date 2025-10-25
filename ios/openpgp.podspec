@@ -3,6 +3,7 @@
 # Run `pod lib lint openpgp.podspec' to validate before publishing.
 #
 
+xcframework_path = File.join(__dir__, "OpenPGPBridge.xcframework").gsub(/ /, '\ ')
 Pod::Spec.new do |s|
   s.name             = 'openpgp'
   s.version          = '0.7.0'
@@ -21,6 +22,11 @@ Pod::Spec.new do |s|
   
   s.vendored_frameworks = 'OpenPGPBridge.xcframework'
   s.static_framework = true
+  s.xcconfig = {
+    'OTHER_LDFLAGS[sdk=iphoneos*]' => "$(inherited) -ObjC -force_load #{xcframework_path}/ios-arm64/OpenPGPBridge.framework/OpenPGPBridge",
+    'OTHER_LDFLAGS[sdk=iphonesimulator*]' => "$(inherited) -ObjC -force_load #{xcframework_path}/ios-arm64_x86_64-simulator/OpenPGPBridge.framework/OpenPGPBridge",
+    'OTHER_LDFLAGS[sdk=maccatalyst*]' => "$(inherited) -ObjC -force_load #{xcframework_path}/ios-arm64_x86_64-maccatalyst/OpenPGPBridge.framework/OpenPGPBridge"
+  }
   # Flutter.framework does not contain a i386 slice. Only x86_64 simulators are supported.
   s.pod_target_xcconfig = {
     'DEFINES_MODULE' => 'YES',
