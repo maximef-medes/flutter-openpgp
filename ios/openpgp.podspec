@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.platform = :ios, '12.0'
   
   s.vendored_frameworks = 'OpenPGPBridge.xcframework'
-  s.static_framework = true
+  s.static_framework = false
   s.xcconfig = {
     'OTHER_LDFLAGS[sdk=iphoneos*]' => "$(inherited) -ObjC -force_load #{xcframework_path}/ios-arm64/OpenPGPBridge.framework/OpenPGPBridge",
     'OTHER_LDFLAGS[sdk=iphonesimulator*]' => "$(inherited) -ObjC -force_load #{xcframework_path}/ios-arm64_x86_64-simulator/OpenPGPBridge.framework/OpenPGPBridge",
